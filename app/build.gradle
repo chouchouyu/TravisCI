@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "ci.travic.com.cm.android.travisci"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file(project.getRootDir().toString() + File.separator + "files" + File.separator + "OA.jks")
+            storePassword project.SIGNINGCONFIGS_STORE_PASSWORD
+            keyAlias project.SIGNINGCONFIGS_KEY_ALIAS
+            keyPassword project.SIGNINGCONFIGS_KEY_PASSWORD
+        }
+        release {
+            storeFile file(project.getRootDir().toString() + File.separator + "files" + File.separator + "OA.jks")
+            storePassword project.SIGNINGCONFIGS_STORE_PASSWORD
+            keyAlias project.SIGNINGCONFIGS_KEY_ALIAS
+            keyPassword project.SIGNINGCONFIGS_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            minifyEnabled false
+            signingConfig null
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+}
