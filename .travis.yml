@@ -24,7 +24,7 @@ before_script:
   - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 
 script:
-  - ./gradlew assemble check
+  - "./gradlew assembleRelease"
 
 
 
@@ -32,10 +32,12 @@ deploy:
   provider: releases
   api_key:
     secure: MIIEpAIBAAKCAQEAyzcGl1CnzkhKyf6BZRTvZNEH658+twCY72XYQgswakWQ7/iYi77YRgBDmneQX+ElSz+JbJOC6cxB13heBnn5Z8PGDbDvOL5UVhVjZttC2/Sd3H70WF/K/sV8sPKK+kjvHwymPKsnLXzyKrVzPHnpZ+PKnQJVE1WGv9+dZ3UvCyahRzKWr2DA1LoUA9kDt+x0MqNnijizo8myDe7S4v2Scoapj8XwwtnyeJlSvQk7VtyPWcuiIjscWxK57r2nfGSusQeeSGV+7MNOY+CIKaOy0OMD6Y9Sl1U1qtGFO0rPpswJehN/iOd8EhELK9aYgDyBQ1LWjhAbFfJ1zE4QWXm6NwIDAQABAoIBAQDCG6VoE9q158fIehoO+5hPrHrsTggRtbhfs+CF9TohyKFRFxxfH8Rl2Qq6GUsGyoBdCCu0UpLR0BF0R71IYmog+5fKrB9VDDhyoat5LCcJAvdnDr1HTPkRsoIQYxztRY1jEyoW+UVK5fZLZVbVhX21hpiasQeimCdGT8qCcCSneGKRlYteU0dk3DuUPbHXblDVQDVfFnhrfIMYbYGIB3tApntU9hnhdXABT4IwzJA/Ut2WYC0JT8ZC86RXXFwwjoU88xJk01Yu37783Rz0D87umqFK6F1m1/pdWz2l4vvzSZpU4pbZJrtk1sqTvb4ilFIqNROXoY8zvJC7jSjcYsgBAoGBAO7jms1szB6DLDWMaodN1hUnk2u0SgNIWS11ZRLwJbeOuClfFXNIQGaOMsU7cNJLj15dala9BDBWRyI7eEeHJop+ndpF2gGJM8A8NjNBvUrudyOm/xqqtZ2YaEfrJP9q6E0ZrmlEgM0pWGs5nlA63C1amH9CdmPKuAD9G43DAcu3AoGBANnFSAmxsEFhqwyxGqTDukaOrFqVRUGsED3YKuYrqofKpCaAo/9copHwv9ooYoX7SnSzwqzRBpHonovHjUTyjImAzHBS3wAk85NnP3EzOYYnJo1NnU2u9xIcue/OGbN75DQfPOWajSNlGOBrGlb94e2D3l6z2BwJUtgJFHWHJIWBAoGAJjgJyzXNzk/kIckOPglo58eGIWQdtzq68bfnbMk4744Izq2kq+XyT7YOT1m8Khjmng1J9wiUg/s5tDNZgfAQbXXmYUZto3NE8UtwzHCHDVbrfqu4ApcvKUB55o+rQqXi9nrWWYcZKDmmKLl2J5XTJfppjWqfsEV9fMMBxoNdZS8CgYEAllpfIlJMHtgQAPNGMfvw4EYhOWlWJ8FkdU6KT+BWHOsL6olmsSiEFb7itvyrCVY2UdzKzAaFQrgYvulH4BKWdVk3zVVqIe9hPKRMaRu026qsM2Mi+D+U1ix/M9JYbFNde58VrHDIgWeLhWZtCSLAmfwxy7DfxHurdvzN41crIAECgYBQndWdpseBygzJTbO1sKc6j5o59PBgWs6JjExGUEB8Oi7SGUnHLQOhxULf6GdUfEiPukBTYJ8tVLI8nHxnHGkiHGNp9mhvcYjXeyzmgovpxQz0ARneItQ3Y528C3L59J6G259shNT9stZodZ7oRLhABOABeLgzPBq7iK14MuQErQ==
-  file: app\build\outputs\apk\*.apk
+  file: app/build/outputs/apk/*.apk
   skip_cleanup: true
   on:
     tags: true
+    all_branches: true
+
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
