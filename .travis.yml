@@ -20,6 +20,6 @@ deploy:
   provider: releases
   api_key:
     secure: QA9qgTes10as4eKTQEQNivnzGcWCF22TpvPF4xq2IYXpbjpyh2Nl6KkIAikli+vsQQYvLzR69qandFEt2MoNo1k6rdblzkKzmLqf50CvayKcgqOueqmmVAFXob7NaAwffbMlxuJKb6+4916A4Effy7WJ0TBkAxIH8WfY+YLqKx+iIkxwvzx0a9YfScKYw9jBy+Cb0GgH64km9ZlNjK9DmsQGuISLOFX6pYUWksvH5iQfxG8j0TUx1ST4xp92drENLmftCtcDIzRPgl+JCiS+AsXT3HJeJ81xh135djAw6Q0FqJkFZbzzLPFGuafpUXpdOLLxP1owfH223NPIxVhP3XCOXqp4+UNwmDB4em8wGD3pjdNhAv+T7XMRdSfbXNRlszWOxh9FZZa9ePsDtguSkaELCzPh7N7O6q75sCfBo4i0Xdc62OdozWSo3cidNVcQsFOPHOCr1JUihOcOFu9zuH/9Vlm/fZJytcXg1+MwqujuqiXOIU3CsBo+lptLOGtEvDB/E1Jo7dPoKJpFuIhBy4No+NH2+ssCKJR06et0yV3O1PcmnW8NvlRJmmefxiAle/LJbrWfUkmX81jTANSLw8v0IKX7sirkuHbtyDZeyltxQtpZ1oTRMRJUQugnmKAKMyFLbEz7LHBFZ21f2ncS7tu7X/v+G6Tn9Wi2Ld+i1as=
-  file: /app/build/outputs/apk/app-release.apk
+  file: /Users/susan/Desktop/TravisCI/app/build/outputs/apk/app-release.apk
   on:
     repo: chouchouyu/TravisCI
