@@ -20,15 +20,15 @@ android {
     signingConfigs {
         debug {
             storeFile file(project.getRootDir().toString() + File.separator + "files" + File.separator + "OA.jks")
-            storePassword project.hasProperty("KEYSTORE_PASS") ? KEYSTORE_PASS : System.getenv("KEYSTORE_PASS")
-            keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : System.getenv("ALIAS_NAME")
-            keyPassword project.hasProperty("ALIAS_PASS") ? ALIAS_PASS : System.getenv("ALIAS_PASS")
+            storePassword project.hasProperty("SIGNINGCONFIGS_STORE_PASSWORD") ? SIGNINGCONFIGS_STORE_PASSWORD : System.getenv("KEYSTORE_PASS")
+            keyAlias project.hasProperty("SIGNINGCONFIGS_KEY_ALIAS") ? SIGNINGCONFIGS_KEY_ALIAS : System.getenv("ALIAS_NAME")
+            keyPassword project.hasProperty("SIGNINGCONFIGS_KEY_PASSWORD") ? SIGNINGCONFIGS_KEY_PASSWORD : System.getenv("ALIAS_PASS")
         }
         release {
             storeFile file(project.getRootDir().toString() + File.separator + "files" + File.separator + "OA.jks")
-            storePassword project.hasProperty("KEYSTORE_PASS") ? KEYSTORE_PASS : System.getenv("KEYSTORE_PASS")
-            keyAlias project.hasProperty("ALIAS_NAME") ? ALIAS_NAME : System.getenv("ALIAS_NAME")
-            keyPassword project.hasProperty("ALIAS_PASS") ? ALIAS_PASS : System.getenv("ALIAS_PASS")
+            storePassword project.hasProperty("SIGNINGCONFIGS_STORE_PASSWORD") ? SIGNINGCONFIGS_STORE_PASSWORD : System.getenv("KEYSTORE_PASS")
+            keyAlias project.hasProperty("SIGNINGCONFIGS_KEY_ALIAS") ? SIGNINGCONFIGS_KEY_ALIAS : System.getenv("ALIAS_NAME")
+            keyPassword project.hasProperty("SIGNINGCONFIGS_KEY_PASSWORD") ? SIGNINGCONFIGS_KEY_PASSWORD : System.getenv("ALIAS_PASS")
         }
     }
 
