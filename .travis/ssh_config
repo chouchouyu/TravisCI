@@ -1,5 +1,0 @@
-Host github.com
-  User chouchouyu
-  StrictHostKeyChecking no
-  IdentityFile ~/.ssh/id_rsa
-  IdentitiesOnly yes

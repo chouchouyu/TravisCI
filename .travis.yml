@@ -11,9 +11,9 @@ android:
   - extra-android-support
 before_install:
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
-  -in OA.jks.enc -out files/OA.jks -d
+  -in id_rsa.enc -out id_rsa -d
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
-  -in .travis/id_rsa.enc -out id_rsa -d
+  -in OA.jks.enc -out files/OA.jks -d
 script:
 - ./gradlew assembleRelease - ./gradlew :app:testReleaseUnitTest
 before_script:
