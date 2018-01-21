@@ -10,7 +10,7 @@ android:
   - extra-android-m2repository
   - extra-android-support
 script:
--  ./gradlew assembleRelease
+-  ./gradlew assembleRelease --stacktrace
 before_script:
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
