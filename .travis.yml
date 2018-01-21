@@ -9,41 +9,17 @@ android:
   - android-26
   - extra-android-m2repository
   - extra-android-support
-#jdk:
-#  - oraclejdk8
-
-#notifications:
-#  email: false
-
-
 script:
-- travis_wait 11 ./gradlew assembleRelease
-
+-  ./gradlew assembleRelease
 before_script:
-#- chmod +x gradlew
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
   -in OA.jks.enc -out files/OA.jks -d
-
 deploy:
   provider: releases
   api_key:
-    secure: nXZR3F38FWayLjw0WD+WI3qsaCOuvr3dEYE3FpfdrJCKULSGBiz3HRbJEdvZySxK4S+4mTxT+a1VINTUZadOUd+bLCHmJfSdQFLz5730chkahH47mEInPiVI/TMNUU3OVWk/jh+TZC9x4m56MhVFFTwH4cjWf5/wMnnL/AguFm5hPsqWhavi/NReWFC+AZNVm3OC+J5iH7uk5llANMqeiWwwBzMTGTjmrqanKzCPw0OVRSKbTP4cmNFeKVcXDJnjWJCQmXCXbg4NoSFCSJ9Bs1lxHYnaq3UgPbJa3LP/pmW9rMri3tTd7XFporHFIWxeZ0J1RakJIIopl6/vCMDlG8JYDvcpe2KPPSyZJtT7sEJJy9Yjg+xx0JTqfQ4Xqw1oL7Vy27T9DdlH0NjqqFdeaMyUUTdmXv5PbkV2XW1NJTVgSvpl0gZMWo0Kiabd37LdrtywbDyg9si2/hkF2bLV1fUzuQc3polbnp/6UJkbpTJtu8JffPhvVqgkbZuGSSC/bG5Hjhnr2Ne/F1tr7AALU1PQFDSjKkLxXS+cX4jkPawmDHaVe0uHsnwYDOVfOfyBXQStfmzF9qgbLpBNYye5Z8Mz0NdIP9+9KxrCjqUyBBCLvqwShrXhbX/7DtW+jw2cxLiAGUyc8grMnyn57FXLg19oRh7rnYfVzGIejYVhCYs=
-  file: app/build/outputs/apk/app-release.apk
+    secure: QA9qgTes10as4eKTQEQNivnzGcWCF22TpvPF4xq2IYXpbjpyh2Nl6KkIAikli+vsQQYvLzR69qandFEt2MoNo1k6rdblzkKzmLqf50CvayKcgqOueqmmVAFXob7NaAwffbMlxuJKb6+4916A4Effy7WJ0TBkAxIH8WfY+YLqKx+iIkxwvzx0a9YfScKYw9jBy+Cb0GgH64km9ZlNjK9DmsQGuISLOFX6pYUWksvH5iQfxG8j0TUx1ST4xp92drENLmftCtcDIzRPgl+JCiS+AsXT3HJeJ81xh135djAw6Q0FqJkFZbzzLPFGuafpUXpdOLLxP1owfH223NPIxVhP3XCOXqp4+UNwmDB4em8wGD3pjdNhAv+T7XMRdSfbXNRlszWOxh9FZZa9ePsDtguSkaELCzPh7N7O6q75sCfBo4i0Xdc62OdozWSo3cidNVcQsFOPHOCr1JUihOcOFu9zuH/9Vlm/fZJytcXg1+MwqujuqiXOIU3CsBo+lptLOGtEvDB/E1Jo7dPoKJpFuIhBy4No+NH2+ssCKJR06et0yV3O1PcmnW8NvlRJmmefxiAle/LJbrWfUkmX81jTANSLw8v0IKX7sirkuHbtyDZeyltxQtpZ1oTRMRJUQugnmKAKMyFLbEz7LHBFZ21f2ncS7tu7X/v+G6Tn9Wi2Ld+i1as=
+  file: /app/build/outputs/apk/app-release.apk
   on:
     repo: chouchouyu/TravisCI
-    tags: true
-    all_branches: true
-
-#before_cache:
-#  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-#  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-#cache:
-#  directories:
-#    - $HOME/.gradle/caches/
-#    - $HOME/.gradle/wrapper/
-#    - $HOME/.android/build-cache
-#branches:
-#    only:
-#        - master
