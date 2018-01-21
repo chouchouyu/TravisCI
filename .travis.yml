@@ -1,5 +1,23 @@
 language: android
-script: ./gradlew build test
+sudo: false
+
+jdk:
+  - oraclejdk8
+
+android:
+  components:
+  - tools
+  - tools
+  - platform-tools
+  - build-tools-26.0.1
+  - android-26
+  - extra-android-m2repository
+  - extra-android-support
+
+before_install:
+ - chmod +x gradlew
+
+script: ./gradlew assembleRelease
 deploy:
   provider: releases
   api_key: $GITHUB_DEPLOY_OAUTH_TOKEN
@@ -7,16 +25,11 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-android:
-  components:
-  - platform-tools
-  - build-tools-26.0.1
-  - android-26
 before_script:
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 before_install:
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
-  -in OA.jks.enc -out ~\/Desktop/TravisCI/files/OA.jks -d
-- openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
   -in id_rsa.enc -out id_rsa -d
+- openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
+  -in OA.jks.enc -out ~\/Desktop/TravisCI/files/OA.jks -d
