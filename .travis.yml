@@ -1,6 +1,6 @@
 language: android  # 声明构建语言环境
 sudo: false  # 开启基于容器的Travis CI任务，让编译效率更高。
-jdk: oraclejdk8
+jdk: oraclejdk8  #lambda表达式支持,如果工程中使用了rxJava等类库时添加
 
 # notifications:      # 每次构建的时候是否通知，如果不想收到通知邮箱（个人感觉邮件贼烦），那就设置false吧
 #  email: false
@@ -39,3 +39,5 @@ deploy:               # 部署
   on:                   # 发布时机
     repo: chouchouyu/TravisCI
 #tags: true       # tags设置为true表示只有在有tag的情况下才部署
+git:
+    depth: 3 #将git depth设置相对小的值,加快构建速度
