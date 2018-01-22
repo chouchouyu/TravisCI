@@ -19,7 +19,7 @@ before_install:
  - chmod +x gradlew
 
 script:
-  - ./gradlew assembleRelease
+  - "./gradlew assembleRelease"
 
 before_deploy:
   - mv app/build/outputs/apk/app-release.apk
