@@ -1,43 +1,30 @@
-language: android  # 声明构建语言环境
-sudo: false  # 开启基于容器的Travis CI任务，让编译效率更高。
-jdk: oraclejdk8  #lambda表达式支持,如果工程中使用了rxJava等类库时添加
-
-# notifications:      # 每次构建的时候是否通知，如果不想收到通知邮箱（个人感觉邮件贼烦），那就设置false吧
-#  email: false
-
-android:   # 配置信息
+language: android
+sudo: false
+jdk: oraclejdk8
+android:
   components:
-    - tools
-    - tools
-    - platform-tools
-    - build-tools-26.0.1
-    - android-26
-    - extra-android-m2repository   # Android Support Repository
-    - extra-android-support  # Support Library
-
+  - tools
+  - tools
+  - platform-tools
+  - build-tools-26.0.1
+  - android-26
+  - extra-android-m2repository
+  - extra-android-support
 before_install:
- - chmod +x gradlew  # 改变gradlew的访问权限
-script:              # 执行:下面的命令
-  - ./gradlew assembleRelease  --stacktrace
-
+- chmod +x gradlew
+script:
+- ./gradlew assembleRelease  --stacktrace
 before_script:
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
   -in OA.jks.enc -out files/OA.jks -d
-
-
-#before_deploy:
-#  - mv app/build/outputs/apk/app-release.apk
-
-deploy:               # 部署
-  provider: releases # 部署到GitHub Release，除此之外，Travis CI还支持发布到fir.im、AWS、Google App Engine等
-  api_key:           # 填写GitHub的token （Settings -> Personal access tokens -> Generate new token）
-   secure: nXZR3F38FWayLjw0WD+WI3qsaCOuvr3dEYE3FpfdrJCKULSGBiz3HRbJEdvZySxK4S+4mTxT+a1VINTUZadOUd+bLCHmJfSdQFLz5730chkahH47mEInPiVI/TMNUU3OVWk/jh+TZC9x4m56MhVFFTwH4cjWf5/wMnnL/AguFm5hPsqWhavi/NReWFC+AZNVm3OC+J5iH7uk5llANMqeiWwwBzMTGTjmrqanKzCPw0OVRSKbTP4cmNFeKVcXDJnjWJCQmXCXbg4NoSFCSJ9Bs1lxHYnaq3UgPbJa3LP/pmW9rMri3tTd7XFporHFIWxeZ0J1RakJIIopl6/vCMDlG8JYDvcpe2KPPSyZJtT7sEJJy9Yjg+xx0JTqfQ4Xqw1oL7Vy27T9DdlH0NjqqFdeaMyUUTdmXv5PbkV2XW1NJTVgSvpl0gZMWo0Kiabd37LdrtywbDyg9si2/hkF2bLV1fUzuQc3polbnp/6UJkbpTJtu8JffPhvVqgkbZuGSSC/bG5Hjhnr2Ne/F1tr7AALU1PQFDSjKkLxXS+cX4jkPawmDHaVe0uHsnwYDOVfOfyBXQStfmzF9qgbLpBNYye5Z8Mz0NdIP9+9KxrCjqUyBBCLvqwShrXhbX/7DtW+jw2cxLiAGUyc8grMnyn57FXLg19oRh7rnYfVzGIejYVhCYs=
-  file: app/build/outputs/apk/app-release.apk  # 部署文件路径
-  skip_cleanup: true            # 设置为true以跳过清理,不然apk文件就会被清理
-  on:                   # 发布时机
+deploy:
+  provider: releases
+  api_key:
+    secure: EZe6ySJEVyuXnBGYQgTwEminrkGp3nDVutAGi+jh8+I20NNqs7fededw0VKRccZskWEM6eT6bOP0D5qqCcZur6A1tUA+Nc8S5ZmVpkliZu+AMlbhmUMNOo104wvD/eKpJ2B0JGiBNHgwfCKT2AOHOiz/hAG1CTW1UOAoUMiK0hxr8KHwnqqfPGxPd8rh2/D3PwIBMNYdajP6MsQCzDfbG/BeZhaPlGAc5KIiayB4149yxXdT/pGPMLkvEftqoHPu4fpMOKk31RdQ8kJws5wco9wL2LZ8tuzvxGV26odJFST1yhSGOvNDHNO4cOKu0gd2y90MdRGJl5eIlaz6kH4OVi3GaMtdTPVKSeeNXN9G5xZ9e0I4kCdFUM0px15JkiSvC+Z5CXer4DL/w19rGcqebQzS/F92p+cCRpwst7DZMsAnIiB6Y30px75S6pQH3lFkQsmg2EsZYKZ+npLMHoMsI1NJJNjavdCPULwfjtLR9f5XVq3vJVLkMoAIUOIMi5vBlZhnD6lZ4fr9T8S+XS9l5grz4lA9THFpjbcfIHrof8SapAmSMaHs7MPPTUajxScRY+4Hm9rQpKmHisuWs9hpisiSuH15/zYN3kIJW1XmWJbvnI91yonBLujo16foOBEfgTyhR23LW8/HZjoLvc6Sg6x5oCKHg4FU+IDCa0aaN8E=
+  file: app/build/outputs/apk/*.apk
+  on:
     repo: chouchouyu/TravisCI
-#tags: true       # tags设置为true表示只有在有tag的情况下才部署
 git:
-    depth: 3 #将git depth设置相对小的值,加快构建速度
+  depth: 3
