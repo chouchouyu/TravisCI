@@ -17,8 +17,8 @@ before_install:
 script:
 - ./gradlew assemble  --stacktrace
 before_script:
-- $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
-- $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+#- $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+#- $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
   -in OA.jks.enc -out files/OA.jks -d
 before_deploy:
