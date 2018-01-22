@@ -16,8 +16,8 @@ script:
 - ./gradlew assembleRelease  --stacktrace
 before_script:
 - chmod +x gradlew
-- openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
-  -in OA.jks.enc -out files/OA.jks -d
+#- openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
+#  -in OA.jks.enc -out files/OA.jks -d
 before_deploy:
 - git config --local user.name "chouchouyu"
 - git config --local user.email "18673104340@qq.com"
