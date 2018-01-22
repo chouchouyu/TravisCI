@@ -11,16 +11,17 @@ android:
   - extra-android-support
   licenses:
   - .+
-script:
-- ./gradlew assembleRelease  --stacktrace
-- git config --local user.name "chouchouyu"
-- git config --local user.email "18673104340@qq.com"
-- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 before_script:
 #- openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
 #  -in OA.jks.enc -out files/OA.jks -d
 - rm -f gradle.properties
 - chmod +x gradlew
+script:
+- ./gradlew assembleRelease  --stacktrace
+before_install:
+- git config --local user.name "chouchouyu"
+- git config --local user.email "18673104340@qq.com"
+- git tag "$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)"
 deploy:
   provider: releases
   api_key:
