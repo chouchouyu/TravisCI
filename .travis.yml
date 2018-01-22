@@ -1,36 +1,41 @@
-language: android
-sudo: false
+language: android  # 声明构建语言环境
+sudo: false  # 开启基于容器的Travis CI任务，让编译效率更高。
 jdk: oraclejdk8
-android:
+
+# notifications:      # 每次构建的时候是否通知，如果不想收到通知邮箱（个人感觉邮件贼烦），那就设置false吧
+#  email: false
+
+android:   # 配置信息
   components:
     - tools
     - tools
     - platform-tools
     - build-tools-26.0.1
     - android-26
-    - extra-android-m2repository
-    - extra-android-support
+    - extra-android-m2repository   # Android Support Repository
+    - extra-android-support  # Support Library
 
-#before_install:
-# - chmod +x gradlew
-
+before_install:
+ - chmod +x gradlew  # 改变gradlew的访问权限
+script:              # 执行:下面的命令
+  - ./gradlew assembleRelease  --stacktrace
 
 before_script:
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
 - $ANDROID_HOME/tools/bin/sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
 - openssl aes-256-cbc -K $encrypted_fe852ca4e71c_key -iv $encrypted_fe852ca4e71c_iv
   -in OA.jks.enc -out files/OA.jks -d
-script:
-  -  ./gradlew assembleRelease --stacktrace
 
-before_deploy:
-  - mv app/build/outputs/apk/app-release.apk
 
-deploy:
-  provider: releases
-  api_key:
+#before_deploy:
+#  - mv app/build/outputs/apk/app-release.apk
+
+deploy:               # 部署
+  provider: releases # 部署到GitHub Release，除此之外，Travis CI还支持发布到fir.im、AWS、Google App Engine等
+  api_key:           # 填写GitHub的token （Settings -> Personal access tokens -> Generate new token）
    secure: nXZR3F38FWayLjw0WD+WI3qsaCOuvr3dEYE3FpfdrJCKULSGBiz3HRbJEdvZySxK4S+4mTxT+a1VINTUZadOUd+bLCHmJfSdQFLz5730chkahH47mEInPiVI/TMNUU3OVWk/jh+TZC9x4m56MhVFFTwH4cjWf5/wMnnL/AguFm5hPsqWhavi/NReWFC+AZNVm3OC+J5iH7uk5llANMqeiWwwBzMTGTjmrqanKzCPw0OVRSKbTP4cmNFeKVcXDJnjWJCQmXCXbg4NoSFCSJ9Bs1lxHYnaq3UgPbJa3LP/pmW9rMri3tTd7XFporHFIWxeZ0J1RakJIIopl6/vCMDlG8JYDvcpe2KPPSyZJtT7sEJJy9Yjg+xx0JTqfQ4Xqw1oL7Vy27T9DdlH0NjqqFdeaMyUUTdmXv5PbkV2XW1NJTVgSvpl0gZMWo0Kiabd37LdrtywbDyg9si2/hkF2bLV1fUzuQc3polbnp/6UJkbpTJtu8JffPhvVqgkbZuGSSC/bG5Hjhnr2Ne/F1tr7AALU1PQFDSjKkLxXS+cX4jkPawmDHaVe0uHsnwYDOVfOfyBXQStfmzF9qgbLpBNYye5Z8Mz0NdIP9+9KxrCjqUyBBCLvqwShrXhbX/7DtW+jw2cxLiAGUyc8grMnyn57FXLg19oRh7rnYfVzGIejYVhCYs=
-  file: app/build/outputs/apk/app-release.apk
-  skip_cleanup: true
-  on:
+  file: app/build/outputs/apk/app-release.apk  # 部署文件路径
+  skip_cleanup: true            # 设置为true以跳过清理,不然apk文件就会被清理
+  on:                   # 发布时机
     repo: chouchouyu/TravisCI
+#tags: true       # tags设置为true表示只有在有tag的情况下才部署
